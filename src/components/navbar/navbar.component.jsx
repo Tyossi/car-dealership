@@ -4,15 +4,15 @@ import "./navbar.styles.scss";
 
 const NavBar = () => {
   return (
-    <div className="nav-items">
+    <div className="navbar">
       <div className="logo">
         <div className="logo-placeholder">Logo</div>
       </div>
-      <div className="nav-links">
+      <div className="navbar__links">
         <span className="nav-link">home</span>
         <span className="nav-link">shop</span>
-        <span className="nav-link">signin</span>
         <span className="nav-link">contact</span>
+        <span className="nav-link">signin</span>
       </div>
     </div>
   );

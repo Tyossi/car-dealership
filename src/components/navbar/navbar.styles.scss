@@ -1,17 +1,20 @@
 @import "../../sassStyles/variables";
 
-.nav-items {
+.navbar {
   display: flex;
   justify-content: space-between;
-  background-color: orange;
+  background-color: $primary-color;
+  height: 8rem;
   align-items: center;
+
   .logo-placeholder {
     flex: 0 0 35%;
-    margin: 1rem;
+    margin: 5rem;
     font-size: 1.5rem;
+    color: white;
   }
-  .nav-links {
-    flex: 0 0 60%;
+  &__links {
+    flex: 0 0 50%;
     display: flex;
     justify-content: space-around;
     color: white;
