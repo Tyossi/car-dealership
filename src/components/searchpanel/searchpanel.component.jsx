@@ -19,13 +19,20 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 170,
+    borderColor: "red",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   text: {
-    color: "#fff",
-    fontSize: "medium",
+    color: "#ecf0f4",
+    fontSize: "small",
+    border: "thin white",
+  },
+
+  textTwo: {
+    color: "#1f2356",
+    fontSize: "small",
   },
 }));
 
@@ -39,7 +46,7 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
 
   const [carList] = useState(CAR_LIST);
 
-  const [filterMinMaxYear, setFilterMinMaxYear] = useState([2000, 2021]);
+  const [filterMinMaxYear, setFilterMinMaxYear] = useState([2005, 2018]);
 
   const [minn, setMinn] = useState([2000, 200000]);
 
@@ -79,7 +86,7 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
   return (
     <div className="search-panel">
       <div className="search-panel__heading">
-        <h1>Search-Panel</h1>
+        <h1>Search</h1>
       </div>
       <div className="search-panel__content">
         <form
@@ -103,15 +110,11 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 label="Platform"
                 className={classes.text}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 {PLATFORMS.map((platform) => (
                   <MenuItem
                     key={platform.value}
                     value={platform.value}
-                    className={classes.text}
-                    color="primary"
+                    className={classes.textTwo}
                   >
                     {platform.displayTag}
                   </MenuItem>
@@ -132,13 +135,14 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 name="genre"
                 onChange={handleOnChange}
                 label="genre"
-                color="secondary"
+                color="#1f2356"
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 {GENRES.map((genre) => (
-                  <MenuItem key={genre.value} value={genre.value}>
+                  <MenuItem
+                    key={genre.value}
+                    value={genre.value}
+                    className={classes.textTwo}
+                  >
                     {genre.displayTag}
                   </MenuItem>
                 ))}
@@ -160,13 +164,14 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 name="genre"
                 onChange={handleOnChange}
                 label="genre"
-                color="secondary"
+                color="#1f2356"
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 {GENRES.map((genre) => (
-                  <MenuItem key={genre.value} value={genre.value}>
+                  <MenuItem
+                    key={genre.value}
+                    value={genre.value}
+                    className={classes.textTwo}
+                  >
                     {genre.displayTag}
                   </MenuItem>
                 ))}
@@ -186,13 +191,14 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 name="genre"
                 onChange={handleOnChange}
                 label="genre"
-                color="secondary"
+                color="#1f2356"
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 {GENRES.map((genre) => (
-                  <MenuItem key={genre.value} value={genre.value}>
+                  <MenuItem
+                    key={genre.value}
+                    value={genre.value}
+                    className={classes.textTwo}
+                  >
                     {genre.displayTag}
                   </MenuItem>
                 ))}
@@ -201,7 +207,6 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
           </div>
 
           <div style={{ width: 350, margin: 10 }}>
-            <span>Year</span>
             <Slider
               value={filterMinMaxYear}
               onChange={updateRange}
@@ -209,10 +214,13 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
               min={2000}
               max={2021}
             />
+            <div className="range-label-box">
+              <span className="range-label">Year</span>
+              <span className="range-label">2000 - 2021</span>
+            </div>
           </div>
 
           <div style={{ width: 350, margin: 10 }}>
-            <span>Milleage</span>
             <Slider
               value={minn}
               onChange={updateRange2}
@@ -220,9 +228,12 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
               min={2000}
               max={200000}
             />
+            <div className="range-label-box">
+              <span className="range-label">Milleage</span>
+              <span className="range-label">80,0000Km - 400,000Km</span>
+            </div>
           </div>
           <div style={{ width: 350, margin: 10 }}>
-            <span>Price</span>
             <Slider
               value={minn}
               onChange={updateRange2}
@@ -230,6 +241,11 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
               min={2000}
               max={200000}
             />
+
+            <div className="range-label-box">
+              <span className="range-label">Price</span>
+              <span className="range-label">$2,000 - $200,000</span>
+            </div>
           </div>
 
           <button
