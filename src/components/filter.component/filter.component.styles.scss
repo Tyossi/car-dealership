@@ -1,0 +1,12 @@
+@import "../../sassStyles/variables";
+
+.selection-btn {
+  background-color: $primary-color;
+  margin: 2rem;
+  color: white;
+  border: none;
+  font-family: $primary-font;
+  width: 9rem;
+  padding: 1rem 1rem;
+  align-self: center;
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import SearchPanel from "../searchpanel/searchpanel.component";
+import SearchPanel from "../searchPanel/searchPanel.component";
+// import SearchPanel from "../searchpanel/searchpanel.component";
 import "./header.styles.scss";
 
 const Header = () => {
