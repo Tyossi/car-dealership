@@ -2,13 +2,13 @@ import FilteredCarsActionTypes from "./filteredCars.types";
 
 const INITIAL_STATE = {
   filteredCars: [
-    {
-      // id: 0,
-      // name: "god of war",
-      // platform: "playstation",
-      // genre: "adventure",
-      // releaseDate: "2016",
-    },
+    // {
+    //   id: 0,
+    //   name: "Baby Girl",
+    //   make: "playstation",
+    //   model: "avensis",
+    //   releaseDate: "2016",
+    // },
   ],
 };
 

@@ -1,13 +1,13 @@
 import React from "react";
 
-const RenderGames = ({ name, platform, genre }) => {
+const RenderGames = ({ name, make, model }) => {
   return (
     <div>
-      {genre ? (
+      {make ? (
         <div>
           <h1>Name: {name}</h1>
-          <h3>Platform: {platform}</h3>
-          <h4>Genre: {genre}</h4>
+          <h3>Platform: {make}</h3>
+          <h4>Genre: {model}</h4>
         </div>
       ) : (
         <h1>Sorry, No Cars Found. Try Updating Your Search Criteria</h1>

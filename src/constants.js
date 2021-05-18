@@ -1,39 +1,77 @@
-export const PLATFORMS = [
+export const MAKE = [
   {
-    value: "playstation",
-    displayTag: "PlayStation",
+    value: "honda",
+    displayTag: "Honda",
   },
   {
-    value: "pc",
-    displayTag: "PC",
+    value: "toyota",
+    displayTag: "Toyota",
   },
   {
-    value: "xbox",
-    displayTag: "Xbox",
-  },
-];
-
-export const GENRES = [
-  {
-    value: "adventure",
-    displayTag: "Adventure",
-  },
-  {
-    value: "fighting",
-    displayTag: "Fighting",
-  },
-  {
-    value: "shooter",
-    displayTag: "Shooter",
-  },
-
-  {
-    value: "racing",
-    displayTag: "Racing",
+    value: "kia",
+    displayTag: "Kia",
   },
 ];
 
-export const SORT_BY = [
+export const MODEL = [
+  {
+    makeValue: "honda",
+    value: "accord",
+    displayTag: "Accord",
+  },
+  {
+    makeValue: "toyota",
+    value: "corolla",
+    displayTag: "Corolla",
+  },
+  {
+    makeValue: "honda",
+    value: "civic",
+    displayTag: "Civic",
+  },
+  {
+    makeValue: "honda",
+    value: "pilot",
+    displayTag: "Pilot",
+  },
+  {
+    makeValue: "toyota",
+    value: "avalon",
+    displayTag: "Avalon",
+  },
+
+  {
+    makeValue: "toyota",
+    value: "avensis",
+    displayTag: "Avensis",
+  },
+  {
+    makeValue: "kia",
+    value: "seranto",
+    displayTag: "Seranto",
+  },
+];
+
+export const FUEL = [
+  {
+    value: "relevance",
+    displayTag: "Relevance",
+  },
+  {
+    value: "popularity",
+    displayTag: "Popularity",
+  },
+  {
+    value: "release-date",
+    displayTag: "Release Date",
+  },
+  {
+    value: "alphabetical",
+    displayTag: "Alphabetical",
+  },
+];
+
+export const BODY_TYPE = [
   {
     value: "relevance",
     displayTag: "Relevance",

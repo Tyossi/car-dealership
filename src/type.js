@@ -1,4 +1,4 @@
 export const filter = {
-  platform: "pc",
-  genre: "crime",
+  make: "toyota",
+  model: "camry",
 };

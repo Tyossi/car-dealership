@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import CAR_LIST from "./carList";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { filter } from "../../type.js";
 import { Slider } from "@material-ui/core";
-import { PLATFORMS, GENRES, SORT_BY } from "../../constants";
+import { MAKE, MODEL, FUEL, BODY_TYPE } from "../../constants";
 import "./searchPanel.styles.scss";
 import { connect } from "react-redux";
 import { updateFilteredCar } from "../../redux/filteredCars/filteredCar.action";
@@ -19,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 170,
-    borderColor: "red",
+    color: "red",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -40,8 +37,8 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
   const classes = useStyles();
   const [filterCar, setFilterCar] = useState({
     ...filter,
-    platform: "playstation",
-    genre: "adventure",
+    make: "toyota",
+    model: "camry",
   });
 
   const [carList] = useState(CAR_LIST);
@@ -49,6 +46,8 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
   const [filterMinMaxYear, setFilterMinMaxYear] = useState([2005, 2018]);
 
   const [minn, setMinn] = useState([2000, 200000]);
+
+  const [makeOptionValue, setMakeOptionValue] = useState("toyota");
 
   const updateRange = (e, data) => {
     setFilterMinMaxYear(data);
@@ -63,19 +62,26 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
       [e.target.name]: e.target.value,
     }));
     console.log(filterCar);
+    setMakeOptionValue(e.target.value);
+  };
+
+  const handleMakeOption = (e) => {
+    setFilterCar((current) => ({
+      ...current,
+      [e.target.name]: e.target.value,
+    }));
+    console.log("Make Value: " + makeOptionValue);
   };
 
   const handleSelectedOptions = (e) => {
     e.preventDefault();
     const [minYear, maxYear] = filterMinMaxYear;
     updateFilteredCar(
-      carList.filter((game) => {
-        if (game.releaseDate >= minYear && game.releaseDate <= maxYear) {
+      carList.filter((car) => {
+        if (car.releaseDate >= minYear && car.releaseDate <= maxYear) {
           return (
-            game.genre.toLowerCase().includes(filterCar.genre.toLowerCase()) &&
-            game.platform
-              .toLowerCase()
-              .includes(filterCar.platform.toLowerCase())
+            car.model.toLowerCase().includes(filterCar.model.toLowerCase()) &&
+            car.make.toLowerCase().includes(filterCar.make.toLowerCase())
           );
         }
         return null;
@@ -97,55 +103,60 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
           <div className="form-fields">
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel
-                id="demo-simple-select-outlined-label"
+                htmlFor="outlined-age-native-simple"
                 className={classes.text}
+                // id="label"
               >
-                Platform
+                Make
               </InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                name="platform"
+                native
                 onChange={handleOnChange}
-                label="Platform"
+                label="Make"
                 className={classes.text}
+                name="make"
+                id="outlined-age-native-simple"
+                labelId="label"
               >
-                {PLATFORMS.map((platform) => (
-                  <MenuItem
-                    key={platform.value}
-                    value={platform.value}
+                <option aria-label="None" value="" />
+                {MAKE.map((make) => (
+                  <option
+                    key={make.value}
+                    value={make.value}
                     className={classes.textTwo}
                   >
-                    {platform.displayTag}
-                  </MenuItem>
+                    {make.displayTag}
+                  </option>
                 ))}
               </Select>
             </FormControl>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel
-                id="demo-simple-select-outlined-label"
+                htmlFor="outlined-age-native-simple"
                 className={classes.text}
               >
-                Genre
+                Model
               </InputLabel>
               <Select
+                native
+                onChange={handleMakeOption}
+                label="Model"
                 className={classes.text}
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                name="genre"
-                onChange={handleOnChange}
-                label="genre"
-                color="#1f2356"
+                name="model"
+                id="outlined-age-native-simple"
               >
-                {GENRES.map((genre) => (
-                  <MenuItem
-                    key={genre.value}
-                    value={genre.value}
-                    className={classes.textTwo}
-                  >
-                    {genre.displayTag}
-                  </MenuItem>
-                ))}
+                <option aria-label="" value="" />
+                {MODEL.map((model) =>
+                  model.makeValue === makeOptionValue ? (
+                    <option
+                      key={model.value}
+                      value={model.value}
+                      className={classes.textTwo}
+                    >
+                      {model.displayTag}
+                    </option>
+                  ) : null
+                )}
               </Select>
             </FormControl>
           </div>
@@ -155,25 +166,27 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 id="demo-simple-select-outlined-label"
                 className={classes.text}
               >
-                Genre
+                Fuel
               </InputLabel>
               <Select
-                className={classes.text}
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                name="genre"
+                native
                 onChange={handleOnChange}
-                label="genre"
-                color="#1f2356"
+                label="Fuel"
+                className={classes.text}
+                inputProps={{
+                  name: "fuel",
+                  id: "outlined-age-native-simple",
+                }}
               >
-                {GENRES.map((genre) => (
-                  <MenuItem
-                    key={genre.value}
-                    value={genre.value}
+                <option aria-label="None" value="" />
+                {FUEL.map((fuel) => (
+                  <option
+                    key={fuel.value}
+                    value={fuel.value}
                     className={classes.textTwo}
                   >
-                    {genre.displayTag}
-                  </MenuItem>
+                    {fuel.displayTag}
+                  </option>
                 ))}
               </Select>
             </FormControl>
@@ -182,25 +195,27 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 id="demo-simple-select-outlined-label"
                 className={classes.text}
               >
-                Genre
+                Body Type
               </InputLabel>
               <Select
-                className={classes.text}
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                name="genre"
+                native
                 onChange={handleOnChange}
-                label="genre"
-                color="#1f2356"
+                label="Body Type"
+                className={classes.text}
+                inputProps={{
+                  name: "bodyType",
+                  id: "outlined-age-native-simple",
+                }}
               >
-                {GENRES.map((genre) => (
-                  <MenuItem
-                    key={genre.value}
-                    value={genre.value}
+                <option aria-label="None" value="" />
+                {BODY_TYPE.map((bodyType) => (
+                  <option
+                    key={bodyType.value}
+                    value={bodyType.value}
                     className={classes.textTwo}
                   >
-                    {genre.displayTag}
-                  </MenuItem>
+                    {bodyType.displayTag}
+                  </option>
                 ))}
               </Select>
             </FormControl>
@@ -255,67 +270,6 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
           >
             Submit
           </button>
-
-          {/* <label htmlFor="platform-select">
-            Platform:
-            <select
-              onChange={handleOnChange}
-              name="platform"
-              id="platform-select"
-            >
-              {PLATFORMS.map((platform) => (
-                <option key={platform.value} value={platform.value}>
-                  {platform.displayTag}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label htmlFor="genre-select">
-            Genres:
-            <select onChange={handleOnChange} name="genre" id="genre-select">
-              {GENRES.map((genre) => (
-                <option key={genre.value} value={genre.value}>
-                  {genre.displayTag}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="sortBy-select">
-            Sort By:
-            <select name="sort by" id="genre-select">
-              {SORT_BY.map((sort) => (
-                <option key={sort.value} value={sort.value}>
-                  {sort.displayTag}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div style={{ width: 250, margin: 40 }}>
-            <Slider
-              value={filterMinMaxYear}
-              onChange={updateRange}
-              valueLabelDisplay="auto"
-              min={2000}
-              max={2021}
-            />
-            <div style={{ width: 250, margin: 20 }}>
-              <Slider
-                value={minn}
-                onChange={updateRange2}
-                valueLabelDisplay="auto"
-                min={2000}
-                max={200000}
-              />
-            </div>
-          </div> */}
-          {/* <button
-            className="search-panel__button"
-            onClick={() => setTimeout(() => history.push("/search"), 1)}
-            type="submit"
-          >
-            Submit
-          </button> */}
         </form>
       </div>
     </div>
