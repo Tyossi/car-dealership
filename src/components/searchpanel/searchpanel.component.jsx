@@ -4,14 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { filter } from "../../type.js";
+// import { filter } from "../../type.js";
 import { Slider } from "@material-ui/core";
+import CustomButton from "../custom-button/custom-button.component";
 import { MAKE, MODEL, FUEL, BODY_TYPE } from "../../constants";
 import "./searchPanel.styles.scss";
 import { connect } from "react-redux";
 import { updateFilteredCar } from "../../redux/filteredCars/filteredCar.action";
 import { withRouter } from "react-router-dom";
 
+///////// MUI Class Config
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -33,27 +35,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//////////// Component Handles The Different Search Inputs and Their States
 const SearchPanel = ({ updateFilteredCar, history }) => {
   const classes = useStyles();
+
   const [filterCar, setFilterCar] = useState({
-    ...filter,
-    make: "toyota",
-    model: "camry",
+    // ...filter,
+    // make: "honda",
+    // model: "camry",
+    // fuelType: "petrol",
+    // bodyType: "sedan",
   });
 
   const [carList] = useState(CAR_LIST);
 
-  const [filterMinMaxYear, setFilterMinMaxYear] = useState([2005, 2018]);
+  const [MinMaxYear, setMinMaxYear] = useState([2005, 2018]);
 
-  const [minn, setMinn] = useState([2000, 200000]);
+  const [minMaxPrice, setMinMaxPrice] = useState([25000, 500000]);
 
-  const [makeOptionValue, setMakeOptionValue] = useState("toyota");
+  const [minMaxMileage, setMinMaxMileage] = useState([2000, 200000]);
 
-  const updateRange = (e, data) => {
-    setFilterMinMaxYear(data);
+  const [makeOptionValue, setMakeOptionValue] = useState();
+
+  const updateYearRange = (e, data) => {
+    setMinMaxYear(data);
   };
-  const updateRange2 = (e, data) => {
-    setMinn(data);
+  const updateMileageRange = (e, data) => {
+    setMinMaxMileage(data);
+  };
+  const updatePriceRange = (e, data) => {
+    setMinMaxPrice(data);
   };
 
   const handleOnChange = (e) => {
@@ -70,19 +81,28 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
       ...current,
       [e.target.name]: e.target.value,
     }));
+    console.log(filterCar);
     console.log("Make Value: " + makeOptionValue);
   };
 
   const handleSelectedOptions = (e) => {
     e.preventDefault();
-    const [minYear, maxYear] = filterMinMaxYear;
+    const [minYear, maxYear] = MinMaxYear;
+    const [minMileage, maxMileage] = minMaxMileage;
+    const [minPrice, maxPrice] = minMaxPrice;
     updateFilteredCar(
       carList.filter((car) => {
         if (car.releaseDate >= minYear && car.releaseDate <= maxYear) {
-          return (
-            car.model.toLowerCase().includes(filterCar.model.toLowerCase()) &&
-            car.make.toLowerCase().includes(filterCar.make.toLowerCase())
-          );
+          if (car.mileage >= minMileage && car.mileage <= maxMileage) {
+            if (car.price >= minPrice && car.price <= maxPrice) {
+              return (
+                car.make.includes(filterCar.make) &&
+                car.model.includes(filterCar.model) &&
+                car.fuelType.includes(filterCar.fuelType) &&
+                car.bodyType.includes(filterCar.bodyType)
+              );
+            }
+          }
         }
         return null;
       })
@@ -166,15 +186,16 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
                 id="demo-simple-select-outlined-label"
                 className={classes.text}
               >
-                Fuel
+                Fuel Type
               </InputLabel>
               <Select
                 native
-                onChange={handleOnChange}
+                // onChange={handleOnChange}
+                onChange={handleMakeOption}
                 label="Fuel"
                 className={classes.text}
                 inputProps={{
-                  name: "fuel",
+                  name: "fuelType",
                   id: "outlined-age-native-simple",
                 }}
               >
@@ -199,7 +220,7 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
               </InputLabel>
               <Select
                 native
-                onChange={handleOnChange}
+                onChange={handleMakeOption}
                 label="Body Type"
                 className={classes.text}
                 inputProps={{
@@ -223,8 +244,8 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
 
           <div style={{ width: 350, margin: 10 }}>
             <Slider
-              value={filterMinMaxYear}
-              onChange={updateRange}
+              value={MinMaxYear}
+              onChange={updateYearRange}
               valueLabelDisplay="auto"
               min={2000}
               max={2021}
@@ -237,21 +258,21 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
 
           <div style={{ width: 350, margin: 10 }}>
             <Slider
-              value={minn}
-              onChange={updateRange2}
+              value={minMaxMileage}
+              onChange={updateMileageRange}
               valueLabelDisplay="auto"
-              min={2000}
+              min={30000}
               max={200000}
             />
             <div className="range-label-box">
               <span className="range-label">Milleage</span>
-              <span className="range-label">80,0000Km - 400,000Km</span>
+              <span className="range-label">30,0000Km - 200,000Km</span>
             </div>
           </div>
           <div style={{ width: 350, margin: 10 }}>
             <Slider
-              value={minn}
-              onChange={updateRange2}
+              value={minMaxPrice}
+              onChange={updatePriceRange}
               valueLabelDisplay="auto"
               min={2000}
               max={200000}
@@ -263,13 +284,13 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
             </div>
           </div>
 
-          <button
+          <CustomButton
             className="search-panel__content--btn"
             onClick={() => setTimeout(() => history.push("/search"), 1)}
             type="submit"
           >
-            Submit
-          </button>
+            Search
+          </CustomButton>
         </form>
       </div>
     </div>
@@ -281,3 +302,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(SearchPanel));
+
+//  return [car.make, car.model, car.fuelType, car.bodyType].includes(
+//    filterCar.make &&
+//      filterCar.model &&
+//      filterCar.fuelType &&
+//      filterCar.bodyType
+//  );

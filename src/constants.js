@@ -54,38 +54,34 @@ export const MODEL = [
 
 export const FUEL = [
   {
-    value: "relevance",
-    displayTag: "Relevance",
+    value: "petrol",
+    displayTag: "Petrol",
   },
   {
-    value: "popularity",
-    displayTag: "Popularity",
+    value: "diesel",
+    displayTag: "Diesel",
   },
   {
-    value: "release-date",
-    displayTag: "Release Date",
-  },
-  {
-    value: "alphabetical",
-    displayTag: "Alphabetical",
+    value: "hybrid",
+    displayTag: "Hybrid",
   },
 ];
 
 export const BODY_TYPE = [
   {
-    value: "relevance",
-    displayTag: "Relevance",
+    value: "sedan",
+    displayTag: "Sedan",
   },
   {
-    value: "popularity",
-    displayTag: "Popularity",
+    value: "suv",
+    displayTag: "SUV",
   },
   {
-    value: "release-date",
-    displayTag: "Release Date",
+    value: "hatchback",
+    displayTag: "Hatchback",
   },
   {
-    value: "alphabetical",
-    displayTag: "Alphabetical",
+    value: "truck",
+    displayTag: "Truck",
   },
 ];

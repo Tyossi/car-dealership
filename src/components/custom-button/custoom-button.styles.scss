@@ -1,0 +1,18 @@
+.button {
+  color: $primary-color;
+  font-family: $primary-font;
+  width: 12rem;
+  background-color: white;
+  padding: 7rem;
+  height: 6rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin: 0 3rem;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    transition: all 0.4s;
+  }
+}
