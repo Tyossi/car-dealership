@@ -1,9 +1,12 @@
+@import "../../sassStyles/variables";
+
 .recently-added {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $primary-color;
 
   .heading {
     font-size: 5rem;
@@ -11,26 +14,89 @@
     padding-left: 4rem;
   }
 
-  .car__card {
-    border-radius: 1.5rem;
-    height: 50vh;
-    width: 27vw;
-    background-color: fff;
-    overflow: hidden;
-    &--image {
-      background-image: url(../../assets/images/car4.jpg);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 20rem;
+  .car__card--container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 
-      background-color: chocolate;
-    }
-    &--description {
-      // border-radius: 4rem;
-      height: 10rem;
+    .car__card {
+      border-radius: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      height: 50vh;
+      width: 25vw;
+      &--image {
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
 
-      background-color: black;
+        flex: 2;
+        background-color: chartreuse;
+      }
+      &--description {
+        flex: 1.2;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &-top {
+          display: flex;
+
+          font-size: 1.7rem;
+          font-weight: 700;
+          padding: 1rem 1.3rem;
+
+          .make {
+            margin-right: 2rem;
+            color: $text-color2;
+          }
+
+          .model {
+            flex: 1;
+            color: $text-color2;
+          }
+
+          .year {
+            background-color: grey;
+            font-size: 1.6rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: black;
+          }
+        }
+
+        &-bottom {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 1.5rem;
+
+          .mileage__tag {
+            color: $text-color1;
+            font-size: 1.7rem;
+            font-weight: 700;
+          }
+
+          .mileage {
+            font-size: 1.7rem;
+            font-weight: 700;
+          }
+
+          .fuel__tag {
+            color: $text-color1;
+            font-size: 1.7rem;
+            font-weight: 700;
+          }
+
+          .fuel {
+            font-size: 1.7rem;
+            font-weight: 700;
+          }
+        }
+      }
     }
   }
 }

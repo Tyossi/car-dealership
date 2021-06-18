@@ -92,14 +92,20 @@ const SearchPanel = ({ updateFilteredCar, history, cars }) => {
     const [minPrice, maxPrice] = minMaxPrice;
     updateFilteredCar(
       cars.filter((car) => {
-        if (car.releaseDate >= minYear && car.releaseDate <= maxYear) {
+        if (car.year >= minYear && car.year <= maxYear) {
           if (car.mileage >= minMileage && car.mileage <= maxMileage) {
             if (car.price >= minPrice && car.price <= maxPrice) {
               return (
-                car.make.includes(filterCar.make) &&
-                car.model.includes(filterCar.model) &&
-                car.fuelType.includes(filterCar.fuelType) &&
-                car.bodyType.includes(filterCar.bodyType)
+                car.make.toLowerCase().includes(filterCar.make.toLowerCase()) &&
+                car.model
+                  .toLowerCase()
+                  .includes(filterCar.model.toLowerCase()) &&
+                car.fuelType
+                  .toLowerCase()
+                  .includes(filterCar.fuelType.toLowerCase()) &&
+                car.bodyType
+                  .toLowerCase()
+                  .includes(filterCar.bodyType.toLowerCase())
               );
             }
           }
