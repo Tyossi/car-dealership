@@ -15,71 +15,60 @@ import { ReactComponent as Volvo } from "../../assets/brandLogos/volvo-3.svg";
 
 const PopularBrands = () => {
   return (
-    <div className="back">
-      <div className="popular__brands">
-        <h1 className="popular__brands-heading">Popular Brands</h1>
-        <div className="brand_logo-box1">
-          <span className="brand_logo-and-name">
-            <ToyotaLogo className="brand_logo" />
-            <p>Toyota</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Peugeot className="brand_logo" />
-            <p>Peugeot</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <BMWLogo className="brand_logo" />
-            <p>BMW</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <FordLogo className="brand_logo" />
-            <p>Ford</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Jaguar className="brand_logo" />
-            <p>Jaguar</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <KIA className="brand_logo" />
-            <p>KIA</p>
-          </span>
-        </div>
-
-        <div className="brand_logo-box2">
-          <span className="brand_logo-and-name">
-            <Landrover className="brand_logo" />
-            <p>Landrover</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Lexus className="brand_logo" />
-            <p>Lexus</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Mercedes className="brand_logo" />
-            <p>Mercedes</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Volkswagen className="brand_logo" />
-            <p>Volkswagen</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <HondaLogo className="brand_logo" />
-            <p>Honda</p>
-          </span>
-          <span className="brand_logo-and-name">
-            <Volvo className="brand_logo" />
-            <p>Volvo</p>
-          </span>
-        </div>
+    <div className="popular__brands">
+      <h1 className="popular__brands--heading">Popular Brands</h1>
+      <div className="popular__brands__logos--box1">
+        <span className="brand">
+          <ToyotaLogo className="brand__logo" />
+          <p className="brand__name">Toyota</p>
+        </span>
+        <span className="brand">
+          <Peugeot className="brand__logo" />
+          <p className="brand__name">Peugeot</p>
+        </span>
+        <span className="brand">
+          <BMWLogo className="brand__logo" />
+          <p className="brand__name">BMW</p>
+        </span>
+        <span className="brand">
+          <FordLogo className="brand__logo" />
+          <p className="brand__name">Ford</p>
+        </span>
+        <span className="brand">
+          <Jaguar className="brand__logo" />
+          <p className="brand__name">Jaguar</p>
+        </span>
+        <span className="brand">
+          <KIA className="brand__logo" />
+          <p className="brand__name">KIA</p>
+        </span>
       </div>
-      <div className="services">
-        <div className="services__heading">
-          <h1>
-            Leading Dealer In
-            <br />
-            New & Used Cars
-          </h1>
-        </div>
+
+      <div className="popular__brands__logos--box2">
+        <span className="brand">
+          <Landrover className="brand__logo" />
+          <p className="brand__name">Landrover</p>
+        </span>
+        <span className="brand">
+          <Lexus className="brand__logo" />
+          <p className="brand__name">Lexus</p>
+        </span>
+        <span className="brand">
+          <Mercedes className="brand__logo" />
+          <p className="brand__name">Mercedes</p>
+        </span>
+        <span className="brand">
+          <Volkswagen className="brand__logo" />
+          <p className="brand__name">Volkswagen</p>
+        </span>
+        <span className="brand">
+          <HondaLogo className="brand__logo" />
+          <p className="brand__name">Honda</p>
+        </span>
+        <span className="brand">
+          <Volvo className="brand__logo" />
+          <p className="brand__name">Volvo</p>
+        </span>
       </div>
     </div>
   );

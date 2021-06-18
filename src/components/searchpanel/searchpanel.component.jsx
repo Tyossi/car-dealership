@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CAR_LIST from "./carList";
+// import CAR_LIST from "./carList";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //////////// Component Handles The Different Search Inputs and Their States
-const SearchPanel = ({ updateFilteredCar, history }) => {
+const SearchPanel = ({ updateFilteredCar, history, cars }) => {
   const classes = useStyles();
 
   const [filterCar, setFilterCar] = useState({
@@ -47,7 +47,7 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
     // bodyType: "sedan",
   });
 
-  const [carList] = useState(CAR_LIST);
+  // const [carList] = useState(cars);
 
   const [MinMaxYear, setMinMaxYear] = useState([2005, 2018]);
 
@@ -91,7 +91,7 @@ const SearchPanel = ({ updateFilteredCar, history }) => {
     const [minMileage, maxMileage] = minMaxMileage;
     const [minPrice, maxPrice] = minMaxPrice;
     updateFilteredCar(
-      carList.filter((car) => {
+      cars.filter((car) => {
         if (car.releaseDate >= minYear && car.releaseDate <= maxYear) {
           if (car.mileage >= minMileage && car.mileage <= maxMileage) {
             if (car.price >= minPrice && car.price <= maxPrice) {
@@ -301,11 +301,10 @@ const mapDispatchToProps = (dispatch) => ({
   updateFilteredCar: (filteredCar) => dispatch(updateFilteredCar(filteredCar)),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(SearchPanel));
+const mapStateToProps = (state) => ({
+  cars: state.cars.carList,
+});
 
-//  return [car.make, car.model, car.fuelType, car.bodyType].includes(
-//    filterCar.make &&
-//      filterCar.model &&
-//      filterCar.fuelType &&
-//      filterCar.bodyType
-//  );
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchPanel)
+);

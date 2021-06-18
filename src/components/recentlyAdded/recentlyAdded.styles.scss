@@ -1,0 +1,36 @@
+.recently-added {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .heading {
+    font-size: 5rem;
+    align-self: flex-start;
+    padding-left: 4rem;
+  }
+
+  .car__card {
+    border-radius: 1.5rem;
+    height: 50vh;
+    width: 27vw;
+    background-color: fff;
+    overflow: hidden;
+    &--image {
+      background-image: url(../../assets/images/car4.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 20rem;
+
+      background-color: chocolate;
+    }
+    &--description {
+      // border-radius: 4rem;
+      height: 10rem;
+
+      background-color: black;
+    }
+  }
+}
