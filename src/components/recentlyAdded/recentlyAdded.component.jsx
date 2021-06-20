@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as Star } from "../../assets/icons/star.svg";
 import "./recentlyAdded.styles.scss";
 import { connect } from "react-redux";
 
@@ -17,7 +18,29 @@ const RecentlyAdded = ({ cars }) => {
                   style={{
                     backgroundImage: `url(${car.imageUrl})`,
                   }}
-                ></div>
+                >
+                  <div className="car-condition_and_favorite-icon">
+                    <div>
+                      <p
+                        className={
+                          car.condition === "Great Condition"
+                            ? "green"
+                            : car.condition === "Good Condition"
+                            ? "yellow"
+                            : "red"
+                        }
+                      >
+                        {car.condition}
+                      </p>
+                    </div>
+                    <div className="favorite-icon">
+                      <div className="star">
+                        <Star />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="price">${car.price}</p>
+                </div>
                 <div className="car__card--description">
                   <div className="car__card--description-top">
                     <p className="make">{car.make}</p>

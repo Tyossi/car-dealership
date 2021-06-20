@@ -8,7 +8,8 @@ const CAR_LIST = [
     bodyType: "sedan",
     year: "2016",
     mileage: "25000",
-    price: "40000",
+    condition: "Great Condition",
+    price: "40,000",
     imageUrl:
       "https://unsplash.com/photos/4WBvCqeMaDE/download?force=true&w=640",
   },
@@ -21,7 +22,8 @@ const CAR_LIST = [
     bodyType: "suv",
     year: "2017",
     mileage: "50000",
-    price: "30000",
+    condition: "Good Condition",
+    price: "30,000",
     imageUrl:
       "https://unsplash.com/photos/GjxV0WonEQY/download?force=true&w=640",
   },
@@ -34,7 +36,8 @@ const CAR_LIST = [
     bodyType: "hatchback",
     year: "2005",
     mileage: "40000",
-    price: "20000",
+    condition: "5 Necessary Repairs",
+    price: "20,000",
     imageUrl:
       "https://unsplash.com/photos/7Cdw956mZ4w/download?force=true&w=640",
   },
